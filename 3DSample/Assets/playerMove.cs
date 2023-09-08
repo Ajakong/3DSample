@@ -14,7 +14,7 @@ public class playerMove : MonoBehaviour
     Vector3 angle;
 
     Vector3 x,y,z;
-    Quaternion rolling;
+    Vector3 rolling;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +22,8 @@ public class playerMove : MonoBehaviour
         angle = new Vector3(0, 0.1f, 0);
         myRb = this.GetComponent<Rigidbody>();
 
-        x=new Vector3 (0.1f,0,0);
-        rolling=new Quaternion(0.01f, 0, 0,0);
+        
+        rolling=new Vector3 (0.1f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -54,7 +54,7 @@ public class playerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             rotate -= 0.1f;
-           
+
             this.transform.rotation = Quaternion.AngleAxis(rotate, angle);
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -67,9 +67,9 @@ public class playerMove : MonoBehaviour
     {
         if (rollFlag == true)
         {
-            if (rolltimer < 10)
+            if (rolltimer < 11)
             {
-                this.transform.rotation = Quaternion.AngleAxis(rotate, angle);
+                this.transform.RotateAround(this.transform.position+move, rolling, 36.0f);
                 myRb.position += move * 30;
                 rolltimer++;
             }
@@ -78,6 +78,7 @@ public class playerMove : MonoBehaviour
                 rolltimer = 0;
                 rollFlag = false;
             }
+
         }
 
 
