@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    public bool ShaveFlag = false;
+    static public bool ShaveFlag = false;
     public bool SwordFlag = false;
 
     string targetName;

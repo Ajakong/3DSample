@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class playerMove : MonoBehaviour
 {
+    GameObject Sword;
     Rigidbody myRb;
+    Sword sword;
 
     int rolltimer=0;
     float rotate=0;
     bool rollFlag=false;
+    bool swordFlag;
     Vector3 move;
     Vector3 angle;
 
@@ -18,10 +21,11 @@ public class playerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        Sword = GameObject.Find("Sword");
+        Sword.SetActive(false);
         angle = new Vector3(0, 0.1f, 0);
         myRb = this.GetComponent<Rigidbody>();
-
+        sword =GetComponent<Sword>();
         
         rolling=new Vector3 (0.1f, 0.0f, 0.0f);
     }
@@ -29,6 +33,10 @@ public class playerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Q))
+        {
+           
+        }
         move = transform.forward * 0.02f;
         
         if (Input.GetKey(KeyCode.W))
@@ -61,6 +69,11 @@ public class playerMove : MonoBehaviour
         {
             rollFlag = true;
 
+        }
+
+        if(swordFlag==true)
+        {
+            Sword.SetActive(true);
         }
     }
     private void FixedUpdate()
